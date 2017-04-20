@@ -1,0 +1,25 @@
+// Copyright (c) Vaisala Oyj 2017. All rights reserved.
+
+plugins {
+    id 'org.ajoberstar.grgit' version '1.7.1'
+}
+
+description ="""
+Example project for a Gradle build
+
+Project name: ${project.name}
+
+More detailed information here..."""
+
+defaultTasks 'printBranch'
+
+import org.ajoberstar.grgit.Grgit
+
+def grgit  = Grgit.open()
+def branch = grgit.branch.getCurrent().getName()
+
+task printBranch {
+    doLast {
+        println "${branch}"
+    }
+}
